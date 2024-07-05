@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -86,9 +89,13 @@ WSGI_APPLICATION = "statistical_analysis.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('PG_DB_NAME'),
+        'USER': os.getenv('PG_USER'),
+        'PASSWORD': os.getenv('PG_PASSWORD'),
+        'HOST': os.getenv('PG_HOST'),
+        'PORT': os.getenv('PG_PORT'),
     }
 }
 
