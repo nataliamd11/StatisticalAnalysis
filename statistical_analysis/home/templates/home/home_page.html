@@ -7,5 +7,13 @@
 
 <!-- replace everything below with: -->
 {% block content %}
+    
+    <p>esta es la intro del home</p>
     {{ page.body|richtext }}
+
+    {% for post_index_page in page.get_children %}
+        <h2><a href="{% pageurl post_index_page %}">{{ post_index_page.title }}</a></h2>
+        {{ post_index_page.specific.intro|richtext }}
+    {% endfor %}
+
 {% endblock %}
