@@ -20,15 +20,18 @@ class BlogIndexPage(Page):
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
-    body = MarkdownField(blank=True)
+    body_markdown = MarkdownField(blank=True)
+    body_richtext = RichTextField(blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
-        index.SearchField('body'),
+        index.SearchField('body_markdown'),
+        index.SearchField('body_richtext'),
     ]
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         FieldPanel('intro'),
-        FieldPanel('body'),
+        FieldPanel('body_markdown'),
+        FieldPanel('body_richtext'),
     ]
