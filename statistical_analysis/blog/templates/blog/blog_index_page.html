@@ -1,17 +1,33 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% load wagtailcore_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-
-    <div class="intro">{{ page.intro|richtext }}</div>
-
+<main class="page projects-page">
+    <section class="portfolio-block projects-cards">
+        <div class="container">
+            <div class="heading">
+                <h1>{{ page.title }}</h1>
+                <div class="intro">{{ page.intro|richtext }}</div>
+            </div>
+            <div class="row">
     {% for post in page.get_children %}
-        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-        {{ post.specific.intro }}
+    <div class="col-md-6 col-lg-4">
+        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image1.jpg" alt="Card Image"></a>
+            <div class="card-body">
+                <h6><a href="{% pageurl post %}">{{ post.title }}</a></h6>
+                <p class="text-muted card-text">{{ post.specific.intro }}</p>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+</div>
+</div>
+</section>
+</main>
 
 {% endblock %}
