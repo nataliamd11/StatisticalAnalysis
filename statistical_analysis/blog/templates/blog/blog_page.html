@@ -10,9 +10,11 @@
 
     <div class="intro">{{ self.intro }}</div>
 
+    <div>{{ self.body_richtext|richtext }}</div>
+
     {% load wagtailmarkdown %}
         <article>
-        {{ self.body|markdown }}
+        {{ self.body_markdown|markdown }}
         </article>
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
