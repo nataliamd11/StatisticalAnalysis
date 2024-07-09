@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -17,7 +17,12 @@
             <div class="row">
     {% for post in page.get_children %}
     <div class="col-md-6 col-lg-4">
-        <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" src="assets/img/nature/image1.jpg" alt="Card Image"></a>
+        <div class="card border-0">
+            {% for item in post.specific.gallery_images.all %}
+            <div class="card-img-top scale-on-hover">
+                {% image item.image fill-400x240 %}
+            </div>
+            {% endfor %}
             <div class="card-body">
                 <h6><a href="{% pageurl post %}">{{ post.title }}</a></h6>
                 <p class="text-muted card-text">{{ post.specific.intro }}</p>
